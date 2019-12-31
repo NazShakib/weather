@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Weather
+</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width initial-scale=1.0"/> 
+
+<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+  <div class="col-md-12 text-center mt-5">
+    <h1 class="location-and-date__location">London, UK</h1>
+    <div class="location-time">Sunday 4th August</div>
+  </div>
+ 
+  <div class="current-temperature col text-center col-md-5" >
+    <div class="row">
+    <div class="current-temperature__icon-container col-md-6 text-right p-5 mb-3">
+      <canvas class="current-temperature__icon " height="200" width="200" alt="icon"></canvas>
+    </div>
+    <div class="current-temperature__content-container col-md-4 text-left mt-5 text-right">
+      <div class="current-temperature__value">21</div>
+      <div class="current-temperature__summary">Mostly Sunny</div>
+      <div class="current-temperature__content-container_details mt-5 btn btn-block">View Details</div>
+    </div>
+    <div class=" col-md-3" >
+        
+    </div>
+  </div>
+  </div>
+  
+
+
+  <div class="current-stats col-md-6">
+    <div class="row m-5">
+        <div class="col-3 ">
+            <div class="current-stats__value pt-4">23&deg;</div>
+            <div class="current-stats__label ">High</div>
+            <div class="current-stats__value pt-4">14&deg;</div>
+            <div class="current-stats__label">Low</div>
+        </div>
+        <div class="col-3">
+            <div class="current-Wind_value pt-4">7mph</div>
+            <div class="current-stats__label">Wind</div>
+            <div class="current-stats__value pt-4">0%</div>
+            <div class="current-stats__label">Rain</div>
+          </div>
+          
+          <div class="col-3">
+            <div class="current-stats__value pt-4">05:27</div>
+            <div class="current-stats__label">Sunrise</div>
+            <div class="current-stats__value pt-4">20:57</div>
+            <div class="current-stats__label">Sunset</div>
+          </div>
+          <div class="col-3">
+            <div class="current_Pressure pt-4">05:27</div>
+            <div class="current_Pressure_label">Pressure</div>
+            <div class="current_Humidity pt-4">20:57</div>
+            <div class="current_Humidity_label">Humidity</div>
+          </div>
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-3 text-right" id="todayUpdate">
+      <span>Hourly Update: </span>
+    </div>
+<div class="col-md-6">
+  
+  <marquee direction="Left" behavior="scroll" scrollamount="3" id="today_update_text">A scrolling text created with HTML Marquee element.</marquee>
+
+</div>
+<div class="col-md-3">
+
+</div>
+
+  </div>
+
+
+</div>
+
+<div class="weather-by-hour col-12 mt-4 ml-5 ">
+    <h2 class="weather-by-hour__heading">Next Days weather</h2>
+    <div class="weather-by-hour__container row mt-5">
+        <div col-1></div>
+
+      <div class="weather-by-hour__item col-1 ml-3 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item1 text-center">3am</div><br>
+        <canvas class="icon_item1" height="75" width="75" alt="Mostly sunny"></canvas><br>
+        <div class="text-center temp_item1">14&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item2 text-center">6am</div><br>
+        <canvas class="icon_item2" height="75" width="75" alt="Mostly sunny"></canvas><br>
+        <div class="text-center temp_item2">16&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item3 text-center">9am</div><br>
+        <canvas class="icon_item3" height="75" width="75" alt="Mostly sunny"></canvas><br>
+        <div class="text-center temp_item3">17&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item4 text-center">12pm</div><br>
+        <canvas class="icon_item4" height="75" width="75" alt="Mostly sunny"></canvas><br>
+        <div class="text-center temp_item4">19&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item5 text-center">3pm</div><br>
+        <canvas class="icon_item5" height="75" width="75" alt="Sunny"></canvas><br>
+        <div class="text-center temp_item5">21&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item6 text-center">6pm</div><br>
+        <canvas class="icon_item6" height="75" width="75" alt="Sunny"></canvas><br>
+        <div class="text-center temp_item6">20&deg;</div>
+      </div>
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item7 text-center">9pm</div><br>
+        <canvas class="icon_item7" height="75" width="75" alt="Mostly sunny"></canvas><br>
+    <div class="text-center temp_item7">18&deg;</div>
+      </div>
+
+      <div class="weather-by-hour__item col-1 ml-4 p-3 d-inline-block bg-info">
+        <div class="weather-by-hour__item8 text-center">9pm</div><br>
+        <canvas class="icon_item8" height="75" width="75" alt="Mostly sunny"></canvas>
+    <div class="text-center temp_item8">18&deg;</div>
+      </div>
+
+      <div col-1></div>
+    </div>
+  </div>
+ 
+    
+</div>
+</div>
+</div>
+<hr>
+<div class="text-center">Copy Right 2019 @ <a target="_blank" href="https://www.facebook.com/nzsakib.rafi">Nazmus Sakib</a> </div>
+
+<script src="app.js">
+</script>
+<script src="skycons.js"></script>
+</body>
+
+
+
+</html>

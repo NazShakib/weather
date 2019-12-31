@@ -1,0 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body
+{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(rgb(47,150,163),rgb(48,62,143));
+    color: white;
+    font-family: sans-serif;
+}
+
+.current-temperature__content-container{
+  font-size: xx-large;
+}
+#todayUpdate{
+  font-weight: bold;
+}
+.current-temperature__content-container_details
+{
+  font-size: small;
+  font-weight: bold;
+}
