@@ -16,6 +16,11 @@ body
 .current-temperature__content-container{
   font-size: xx-large;
 }
+
+.current-temperature__summary
+{
+  font-size: medium;
+}
 #todayUpdate{
   font-weight: bold;
 }

@@ -24,27 +24,47 @@ window.addEventListener('load',()=>{
 
 // current weather details
 
-    function weatherToday(timezone,temperature,icon,summary,windSpeed,time,humidity,pressure,hourly_update){
+    function weatherToday(timezone,temperature,icon,summary,windSpeed,time,humidity,pressure,hourly_update,item){
 
-        timeLocation =document.querySelector('.location-and-date__location');
-        currentTemperature = document.querySelector('.current-temperature__value');
-        currentIcons = document.querySelector('.current-temperature__icon');
-        currentSummery = document.querySelector('.current-temperature__summary');
-        currentWindSpeed = document.querySelector('.current-Wind_value');
-        currentTime = document.querySelector('.location-time');
-        currentPressure = document.querySelector('.current_Pressure');
-        currentHumidity = document.querySelector('.current_Humidity');
-        currentUpdateText = document.getElementById('today_update_text');
 
-       timeLocation.textContent = timezone;
-       currentTemperature.textContent = temperature;
-       currentSummery.textContent = summary;
-       currentWindSpeed.textContent = windSpeed;
-       currentTime.textContent = time;
-       currentHumidity.textContent = humidity+'%';
-       currentPressure.textContent = pressure;
-       currentUpdateText.textContent = hourly_update;
-       setIcon(currentIcons,icon);
+            timeLocation =document.querySelector('.location-and-date__location');
+            currentTemperature = document.querySelector('.current-temperature__value');
+            currentIcons = document.querySelector('.current-temperature__icon');
+            currentSummery = document.querySelector('.current-temperature__summary');
+            currentWindSpeed = document.querySelector('.current-Wind_value');
+            currentTime = document.querySelector('.location-time');
+            currentPressure = document.querySelector('.current_Pressure');
+            currentHumidity = document.querySelector('.current_Humidity');
+            currentUpdateText = document.getElementById('today_update_text');
+            
+            
+            
+            //console.log(currentHumidity);
+
+        if(item===null)
+        {
+            timeLocation.textContent = timezone;
+            currentTemperature.textContent = temperature;
+            currentSummery.textContent = summary;
+            currentWindSpeed.textContent = windSpeed;
+            currentTime.textContent = time;
+            currentHumidity.textContent = humidity+'%';
+            currentPressure.textContent = pressure;
+            currentUpdateText.textContent = hourly_update;
+            setIcon(currentIcons,icon);
+        }
+        else
+        {
+            timeLocation.textContent = timezone;
+            currentTemperature.textContent = temperature;
+            currentSummery.textContent = summary;
+            currentWindSpeed.textContent = windSpeed;
+            currentTime.textContent = time;
+            currentHumidity.textContent = humidity+'%';
+            currentPressure.textContent = pressure;
+            currentUpdateText.textContent = hourly_update;
+            setIcon(currentIcons,icon);
+        }
 
     }
 // current weather icon setup
@@ -61,6 +81,7 @@ window.addEventListener('load',()=>{
    //API call and find the actuall weather from dark sky web  
 function resultFetch(API)
 {
+    var selection = document.querySelector('.mdb-select');
    fetch(API)
    .then(Response =>{
       return Response.json(); 
@@ -70,19 +91,47 @@ function resultFetch(API)
        const{humidity,temperature,icon,pressure,summary,windSpeed,time}= data.currently;
        const timezone = data.timezone;
        const date = new Date(time*1000);
-       console.log(humidity+' '+pressure);
+       //console.log(humidity+' '+pressure);
+       var item = null;
+       
+        selection.addEventListener("click",tempChange,false);
+        var temperature1 = temperature;
+        function tempChange(e)
+        {
+           var value = e.target.value;
+           var count = 0;
+           console.log(value);
+           if(value ==="celsius" && count===0)
+           {
+              temperature1 = cToF(temperature1);
+              console.log(temperature1);
+              count=1;
+           }
+           else if(value ==="fahrenheit" && count===1)
+           {
+
+               temperature1 = fToC(temperature1);
+               count=0;
+               
+           }
+           
+        }
+
+        console.log(temperature1);
+
+      
+
        var hourly_update = liveHourlyWeatherUpdate(data.hourly);
-       weatherToday(timezone,temperature,icon,summary,windSpeed,date,humidity*100,pressure,hourly_update);
-
-       
-       var nextDaysWeathers=weatherNextDays(data.daily.data);
-
-       
-
-       
-
+       weatherToday(timezone,temperature1,icon,summary,windSpeed,date,humidity*100,pressure,hourly_update,item);
+       whenClickedOnItem(data);
+       var nextDaysWeathers=weatherNextDays(data.daily.data);   
+      
    })
 }
+
+
+
+
 
 // hourly updates summery which is marquee over the websites
 function liveHourlyWeatherUpdate(data)
@@ -124,6 +173,8 @@ function weatherNextDays(data)
     
 
     whenItemNotClick(daily_data);
+   // whenClickedOnItem(daily_data)
+
     
 
    // console.log(daily_data)
@@ -134,6 +185,56 @@ function weatherNextDays(data)
 });*/
 
 }
+
+
+//when click on each item
+
+function whenClickedOnItem(data)
+{
+    //var parrentNode = document.querySelector('.weather-by-hour');
+
+    var item1 = document.getElementById('1');
+    var item2 = document.getElementById('2');
+    var item3 = document.getElementById('3');
+    var item4 = document.getElementById('4');
+    var item5 = document.getElementById('5');
+    var item6 = document.getElementById('6');
+    var item7 = document.getElementById('7');
+    var item8 = document.getElementById('8');
+
+    //console.log(item7);
+    //console.log(item1.id+' '+item2+' '+item3+' '+item4+' '+item5+' '+item6+' '+item7+' '+item8);
+
+    item1.addEventListener("click",findData,false);
+    item2.addEventListener("click",findData,false);
+    item3.addEventListener("click",findData,false);
+    item4.addEventListener("click",findData,false);
+    item5.addEventListener("click",findData,false);
+    item6.addEventListener("click",findData,false);
+    item7.addEventListener("click",findData,false);
+    item8.addEventListener("click",findData,false);
+    
+
+    function findData(e)
+    {
+        var id = e.target.id;
+        console.log(id);
+
+        console.log(data.daily.data[id]);
+        const{humidity,apparentTemperatureHigh,icon,pressure,summary,windSpeed,time}= data.daily.data[id-1];
+        const timezone = data.timezone;
+        const date = new Date(time*1000);
+        var hourly_update = liveHourlyWeatherUpdate(data.hourly);
+        weatherToday(timezone,apparentTemperatureHigh,icon,summary,windSpeed,date,humidity*100,pressure,hourly_update,id);
+
+
+    }
+    
+   
+    
+}
+
+
 
 // each and every item shows when item is not clicked
 function whenItemNotClick(daily_data_not_click)
@@ -251,6 +352,8 @@ function setHours(time)
     var hour = times.getHours();
     return hour;
 }
+
+
 
 // celsius to fahrenheit converting
 function cToF(celsius) 
